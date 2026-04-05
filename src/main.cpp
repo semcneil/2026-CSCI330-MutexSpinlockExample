@@ -1,5 +1,8 @@
 #include <Arduino.h>
 
+// This version only prints from core 0 but receives data from core 1
+bool core1TextAvailable = false;  // signal (semaphore) that core 1 has text
+String core1Text = "";
 
 void setup() {
   Serial.begin(4800);
@@ -7,15 +10,16 @@ void setup() {
   Serial.println("Core 1 starting");
 }
 
-bool usingSerial = false;
 void loop() {
-  if(!usingSerial) {
-    usingSerial = true;
-    if(usingSerial) {
-      Serial.println("1");
-    }
-    usingSerial = false;
+  Serial.println("1");
+  Serial.flush();
+  if(core1TextAvailable) {
+    String c1txt = core1Text;
+    core1Text = "";
+    core1TextAvailable = false;
+    Serial.println(c1txt);
   }
+  delay(1);
 }
 
 
@@ -25,11 +29,7 @@ void setup1() {
 }
 
 void loop1() {
-  if(!usingSerial) {
-    usingSerial = true;
-    if(usingSerial) {
-      Serial.println("-");
-    }
-    usingSerial = false;
-  }
+  core1Text += "-\n";
+  core1TextAvailable = true;
+  delay(1);
 }
