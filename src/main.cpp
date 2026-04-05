@@ -10,7 +10,8 @@ void setup() {
 
 void loop() {
   mutex_enter_blocking(&my_mutex);  // check out mutex
-  Serial.println("1");
+  // Serial.println("1");
+  Serial.println("1111111111111111111111111111111");
   mutex_exit(&my_mutex);  // return mutex
 }
 
@@ -22,6 +23,6 @@ void setup1() {
 
 void loop1() {
   mutex_enter_blocking(&my_mutex);  // check out mutex
-  Serial.println("-");
+  Serial.println("-------------------------------");
   mutex_exit(&my_mutex); // return mutex
 }
