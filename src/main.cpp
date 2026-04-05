@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-auto_init_mutex(my_mutex);
+auto_init_mutex(my_mutex);  // Create a mutex lock
 
 void setup() {
   Serial.begin(4800);
@@ -9,9 +9,9 @@ void setup() {
 }
 
 void loop() {
-  mutex_enter_blocking(&my_mutex);
+  mutex_enter_blocking(&my_mutex);  // check out mutex
   Serial.println("1");
-  mutex_exit(&my_mutex);
+  mutex_exit(&my_mutex);  // return mutex
 }
 
 
@@ -21,7 +21,7 @@ void setup1() {
 }
 
 void loop1() {
-  mutex_enter_blocking(&my_mutex);
+  mutex_enter_blocking(&my_mutex);  // check out mutex
   Serial.println("-");
-  mutex_exit(&my_mutex);
+  mutex_exit(&my_mutex); // return mutex
 }
