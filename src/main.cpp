@@ -1,3 +1,13 @@
+/*
+  This tests different methods to signal between cores for using Serial.
+  Check out the different branches to see different methods
+  This software is in the public domain.
+  Use at your own risk. No guarantees that this is done correctly.
+
+  Seth McNeill
+  2026 April 05
+*/
+
 #include <Arduino.h>
 
 auto_init_mutex(my_mutex);  // Create a mutex lock
