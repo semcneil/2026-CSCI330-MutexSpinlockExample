@@ -1,8 +1,6 @@
 #include <Arduino.h>
 
-// This version only prints from core 0 but receives data from core 1
-bool core1TextAvailable = false;  // signal (semaphore) that core 1 has text
-String core1Text = "";
+auto_init_mutex(my_mutex);
 
 void setup() {
   Serial.begin(4800);
@@ -11,15 +9,9 @@ void setup() {
 }
 
 void loop() {
+  mutex_enter_blocking(&my_mutex);
   Serial.println("1");
-  Serial.flush();
-  if(core1TextAvailable) {
-    String c1txt = core1Text;
-    core1Text = "";
-    core1TextAvailable = false;
-    Serial.println(c1txt);
-  }
-  delay(1);
+  mutex_exit(&my_mutex);
 }
 
 
@@ -29,7 +21,7 @@ void setup1() {
 }
 
 void loop1() {
-  core1Text += "-\n";
-  core1TextAvailable = true;
-  delay(1);
+  mutex_enter_blocking(&my_mutex);
+  Serial.println("-");
+  mutex_exit(&my_mutex);
 }
