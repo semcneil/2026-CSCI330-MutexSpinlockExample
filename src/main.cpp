@@ -18,6 +18,7 @@ void loop() {
     core1Text = "";
     core1TextAvailable = false;
     Serial.println(c1txt);
+    Serial.flush();
   }
   delay(1);
 }
