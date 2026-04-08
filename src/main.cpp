@@ -3,6 +3,9 @@
 // This version only prints from core 0 but receives data from core 1
 bool core1TextAvailable = false;  // signal (semaphore) that core 1 has text
 String core1Text = "";
+// things to try
+// make these volatile
+// wait in core 1 for core1TextAvailable to be false before writing
 
 void setup() {
   Serial.begin(4800);
