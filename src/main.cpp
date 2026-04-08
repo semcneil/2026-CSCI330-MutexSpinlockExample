@@ -9,7 +9,7 @@ void setup() {
   lock = spin_lock_instance(lock_num);
 
   delay(3000);
-  Serial.println("Core 1 starting");
+  Serial.println("Core 0 starting");
   Serial.println("Using spinlock #" + String(lock_num));
   delay(5000);
 }
@@ -24,7 +24,7 @@ void loop() {
 
 void setup1() {
   delay(10000);
-  Serial.println("Core 2 starting");
+  Serial.println("Core 1 starting");
 }
 
 void loop1() {
